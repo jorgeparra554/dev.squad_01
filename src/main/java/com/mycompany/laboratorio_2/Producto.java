@@ -32,6 +32,59 @@ public class Producto {
         }
     }
 
+//EJERCICIO 2  SOBRECARGA DE CONSTRUCTORES.
+    
+//2.CONSTRUCTOR NOMBRE PRECIO Y CODIGO   
+    public Producto(String nombre, double precio, String codigo) {
+        this(nombre, precio, 0 , codigo);
+    
+    }
+//3.CONSTRUCTOR NOMBRE y PRECIO
+
+    public Producto(String nombre, double precio) {
+        this (nombre, precio, 0,"PENDIENTE-"+(int)(Math.random()*1000));
+    }
+//4.CONSTRUCTOR VACIO  
+    public Producto() {
+        this ("",0.0,0,"");
+    }
+    
+//EJERCICIO 3 SOBRECARGA DE METODOS
+    public double aplicarDescuento (double porcentaje){
+        if (porcentaje > 50){
+            porcentaje= 50;
+        }
+        precio = precio - (precio * porcentaje/ 100);
+        return precio;
+    
+    }
+    
+    public double aplicarDescuento(double montoFijo, boolean esFijo){
+        if (montoFijo > precio) {
+        montoFijo = precio;
+        }
+        precio = precio - montoFijo;
+        return precio;
+    }
+    
+    //EJERCICIO 4 LLAMADOS A METODOS INTERNOS 
+    
+    public double calcularValorInventario () {
+        if (getCantidad() == 0){
+            return 0.0;
+        }
+        return getPrecio() * getCantidad();
+    
+    }
+
+    public double calcularValorConDescuento (double descuento){
+        double valorInventario =  calcularValorInventario ();
+        double valorDescuento = valorInventario * descuento / 100;
+        return valorInventario - valorDescuento;
+    }
+    
+    
+    //METODO GETTER
     public String getNombre() {
         return nombre;
     }
