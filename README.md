@@ -1,4 +1,3 @@
-```plantuml
 @startuml
 
 class Producto {
@@ -45,20 +44,9 @@ class Laboratorio_2 {
     + {static} main(args: String[]): void
 }
 
-class Eje7 {
-    + {static} main(args: String[]): void
-}
-
-class Eje8 {
-    + {static} main(args: String[]): void
-}
-
 Inventario "1" o-- "*" Producto : Agregacion
 GestorArchivos ..> Producto : Dependencia
 Laboratorio_2 ..> Inventario : Uso
 Laboratorio_2 ..> Producto : Uso
-Eje7 ..> Inventario : Uso
-Eje8 ..> GestorArchivos : Uso
-Eje8 ..> Producto : Uso
 
 @enduml
