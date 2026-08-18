@@ -37,14 +37,34 @@ public class Laboratorio_2 {
         System.out.println("Valor con 10% descuento: $" + macbook.calcularValorConDescuento(10.0));
     
 //EJERCICIO 5 USO DE ARREGLOS
+
+     /*
         Inventario inventario = new Inventario();
         inventario.agregarProducto(new Producto("Teclado Mecánico", 89.99, 20, "TECH-005"));
         inventario.agregarProducto(new Producto("Mouse Gaming", 49.99, 30, "TECH-006"));
         inventario.mostrarInventario();
         System.out.println("Total de productos: " + inventario.contarProductos());
+        */
         
-        
-        
+  //EJERCICIO 6
+
+       Inventario inventario = new Inventario();
+       inventario.agregarProducto(new Producto("Teclado Mecánico", 89.99, 20, "TECH-005"));
+       inventario.agregarProducto(new Producto("Mouse Gaming", 49.99, 30, "TECH-006"));
+
+// ELIMINAR PRODUCTO
+
+       inventario.eliminarProducto("TECH-005");
+
+// BUSCAR PRODUCTO
+
+       Producto encontrado = inventario.buscarProducto("Mouse Gaming");
+
+       if (encontrado != null) {
+         System.out.println("Producto encontrado: " + encontrado.getNombre());
+         System.out.println("Precio: $" + encontrado.getPrecio());
+         System.out.println("Código: " + encontrado.getCodigo());
+}
        
        
     }
