@@ -7,7 +7,11 @@ package com.mycompany.laboratorio_2;
 /**
 
  */
-
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -107,6 +111,41 @@ public class Inventario {
 
         return resultados;
     }
-
-}
     
+    // Ejercicio 7 primer metodo
+    public Producto obtenerProductoPorPosicion(int posicion) {
+        try {
+            return productos.get(posicion);
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Posición inválida. El inventario solo tiene "
+                    + productos.size() + " productos.");
+            return null;
+        }
+    }
+
+    // Segundo método (desafío creativo)
+    public Producto obtenerProductoSeguro(int posicion) {
+        try {
+            return productos.get(posicion);
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Posición inválida. El inventario solo tiene "
+                    + productos.size() + " productos.");
+            registrarError(posicion, e.getMessage());
+            return null;
+        }
+    }
+
+    // Método auxiliar que usa obtenerProductoSeguro
+    private void registrarError(int posicion, String detalle) {
+        String fecha = LocalDateTime.now()
+                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+
+        try (PrintWriter salida = new PrintWriter(new FileWriter("logs_inventario.txt", true))) {
+            salida.println("[" + fecha + "] Error al obtener producto en posición "
+                    + posicion + " -> " + detalle);
+        } catch (IOException ioException) {
+            System.out.println("No se pudo escribir en el log: " + ioException.getMessage());
+        }
+    }
+}
+
